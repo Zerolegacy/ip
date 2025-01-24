@@ -14,13 +14,27 @@ public class Dynamis {
                 int taskNumber = Integer.parseInt(input.split(" ")[1]);
                 taskList.markItem(taskNumber);
             } else if (input.startsWith("todo ")) {
-                taskList.addItem(new Todo(input.substring(5)));
+                if (!input.substring(5).equals("")) {
+                    taskList.addItem(new Todo(input.substring(5)));
+                } else {
+                    System.out.println("No name detected! Please enter the name of your task!");
+                }
             } else if (input.startsWith("deadline ")) {
                 String[] parts = input.substring(9).split(" /by ");
-                taskList.addItem(new Deadline(parts[0], parts[1]));
+                if (parts.length == 2) {
+                    taskList.addItem(new Deadline(parts[0], parts[1]));
+                } else {
+                    System.out.println("Incorrect usage. Please Try again.");
+                }
             } else if (input.startsWith("event ")) {
                 String[] parts = input.substring(6).split(" /from | /to ");
-                taskList.addItem(new Event(parts[0], parts[1], parts[2]));
+                if (parts.length == 3) {
+                    taskList.addItem(new Event(parts[0], parts[1], parts[2]));
+                } else {
+                    System.out.println("Incorrect usage. Please Try again.");
+                }
+            } else {
+                System.out.println("Invalid command, please try again.");
             }
             input = scanner.nextLine();
         }
