@@ -1,19 +1,14 @@
-public class Task {
-    private Boolean doneCheck;
-    private String name;
+public abstract class Task {
+    protected Boolean doneCheck;
+    protected String name;
 
     Task(String name) {
         this.doneCheck = false;
         this.name = name;
     }
 
-    Task(Boolean doneCheck, String name) {
+    public void editDoneCheck(Boolean doneCheck) {
         this.doneCheck = doneCheck;
-        this.name = name;
-    }
-
-    public Task editDoneCheck(Boolean doneCheck) {
-        return new Task(doneCheck, this.name);
     }
 
     @Override
