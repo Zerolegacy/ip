@@ -31,4 +31,15 @@ public class TaskList {
             System.out.println("Invalid task number.");
         }
     }
+
+    public void deleteItem(int taskNumber) {
+        if (taskNumber > 0 && taskNumber <= items.size()) {
+            System.out.println(horLine + "Noted. I've removed this task:");
+            System.out.println(" " + items.get(taskNumber -1));
+            items.remove(taskNumber -1);
+            System.out.println("Now you have " + items.size() + " tasks in the list.\n" + horLine);
+        } else {
+            System.out.println("Invalid task number.");
+        }
+    }
 }

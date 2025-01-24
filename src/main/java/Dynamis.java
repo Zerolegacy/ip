@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+//used regex.com to check regex used.
 public class Dynamis {
     public static void main(String[] args) {
         String horLine = "----------------------------------------\n";
@@ -33,6 +34,9 @@ public class Dynamis {
                 } else {
                     System.out.println("Incorrect usage. Please Try again.");
                 }
+            } else if (input.matches("delete \\d+")) {
+                int taskNumber = Integer.parseInt(input.split(" ")[1]);
+                taskList.deleteItem(taskNumber);
             } else {
                 System.out.println("Invalid command, please try again.");
             }
