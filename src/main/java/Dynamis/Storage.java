@@ -14,6 +14,9 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /*
+     * Checks if the file in the given file path exists, otherwise create it.
+     */
     public void initializeFile() {
         try {
             File f = new File(this.filePath);
@@ -32,6 +35,11 @@ public class Storage {
         fw.close();
     }
 
+    /*
+     * Saves the tasks to the file in the filePath property.
+     *
+     * @param tasks The list of tasks to save in the file.
+     */
     public void saveToFile(ArrayList<Task> tasks) throws IOException {
         String tempStorage = "";
         Parser parser = new Parser();
@@ -45,6 +53,11 @@ public class Storage {
         }
     }
 
+    /*
+     * Loads all the tasks from the file in the given filepath.
+     *
+     * @return the list of tasks.
+     */
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
         ArrayList<Task> tasks = new ArrayList<>();
         File f = new File(this.filePath);
