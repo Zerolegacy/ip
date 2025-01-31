@@ -53,4 +53,19 @@ public class TaskList {
     public ArrayList<Task> getTasks() {
         return items;
     }
+
+    /*
+     * Searches the TaskList for tasks that contains a substring of a given keyword.
+     *
+     * @param keyword The substring to search for.
+     */
+    public void findTasks(String keyword) {
+        System.out.println(horLine + "Here are the matching tasks in your list:");
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).name.toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println((i + 1) + ". " + items.get(i));
+            }
+        }
+        System.out.println("End of search\n" + horLine);
+    }
 }
