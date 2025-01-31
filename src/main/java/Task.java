@@ -11,6 +11,10 @@ public abstract class Task {
         this.doneCheck = doneCheck;
     }
 
+    public boolean isDone() {
+        return this.doneCheck;
+    }
+
     @Override
     public String toString() {
         if (doneCheck) {
