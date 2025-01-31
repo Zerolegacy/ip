@@ -1,3 +1,5 @@
+package Dynamis;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -9,7 +11,7 @@ public class Ui {
 
     String horLine = "----------------------------------------\n";
     public void printWelcomeMessage() {
-        System.out.println(horLine + "Hello! I'm Dynamis\nWhat can I do for you?\n" + horLine);
+        System.out.println(horLine + "Hello! I'm Dynamis.Dynamis\nWhat can I do for you?\n" + horLine);
     }
 
     public void printGoodbyeMessage() {

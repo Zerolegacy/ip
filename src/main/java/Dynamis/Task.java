@@ -1,3 +1,5 @@
+package Dynamis;
+
 public abstract class Task {
     protected Boolean doneCheck;
     protected String name;

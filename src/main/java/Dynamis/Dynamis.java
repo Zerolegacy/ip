@@ -1,3 +1,5 @@
+package Dynamis;
+
 import java.io.IOException;
 
 public class Dynamis {
