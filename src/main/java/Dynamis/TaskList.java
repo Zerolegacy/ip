@@ -2,7 +2,6 @@ package Dynamis;
 
 import java.util.ArrayList;
 
-
 public class TaskList {
     private ArrayList<Task> items;
     String horLine = "----------------------------------------\n";
@@ -46,7 +45,8 @@ public class TaskList {
     public void markItem(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= items.size()) {
             items.get(taskNumber - 1).editDoneCheck(true);
-            System.out.println(horLine + "Nice! I've marked this task as done:\n" + items.get(taskNumber - 1).name + "\n"+ horLine);
+            System.out.println(horLine + "Nice! I've marked this task as done:\n"
+                    + items.get(taskNumber - 1).name + "\n"+ horLine);
         } else {
             System.out.println("Invalid task number.");
         }
@@ -58,8 +58,8 @@ public class TaskList {
     public void deleteItem(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= items.size()) {
             System.out.println(horLine + "Noted. I've removed this task:");
-            System.out.println(" " + items.get(taskNumber -1));
-            items.remove(taskNumber -1);
+            System.out.println(" " + items.get(taskNumber - 1));
+            items.remove(taskNumber - 1);
             System.out.println("Now you have " + items.size() + " tasks in the list.\n" + horLine);
         } else {
             System.out.println("Invalid task number.");

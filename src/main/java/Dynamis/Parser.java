@@ -32,15 +32,15 @@ public class Parser {
 
         Task task = null;
         switch (parts[0]) {
-            case "T":
-                task = new Todo(parts[2]);
-                break;
-            case "D":
-                task = new Deadline(parts[2], parts[3]);
-                break;
-            case "E":
-                task = new Event(parts[2], parts[3], parts[4]);
-                break;
+        case "T":
+            task = new Todo(parts[2]);
+            break;
+        case "D":
+            task = new Deadline(parts[2], parts[3]);
+            break;
+        case "E":
+            task = new Event(parts[2], parts[3], parts[4]);
+            break;
         }
         if (task != null && parts[1].equals("1")) {
             task.editDoneCheck(true);
