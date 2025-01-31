@@ -8,6 +8,12 @@ public class Deadline extends Task{
     protected LocalDate dueBy;
     protected String dueByString;
 
+    /*
+     * Constructs a Deadline Object. A type of task for the tasklist.
+     *
+     * @param name The name or description of the task.
+     * @param dueBy The due date of the task.
+     */
     public Deadline(String name, String dueBy) {
         super(name);
         try {

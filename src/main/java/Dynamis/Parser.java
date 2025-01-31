@@ -1,6 +1,12 @@
 package Dynamis;
 
 public class Parser {
+    /*
+     * Converts a Task Object to a presentable String. Used to output List of Tasks.
+     *
+     * @param task The task to convert to string.
+     * @return The presentable string format for the task.
+     */
     public String serialiseTask(Task task) {
         if (task instanceof Todo) {
             return "T | " + (task.isDone() ? "1" : "0") + " | " + task.name;
@@ -15,6 +21,12 @@ public class Parser {
         }
     }
 
+    /*
+     * Converts the presentable string format of a task back to a Task object.
+     *
+     * @param line The string formatted version of a task.
+     * @returns the task converted from the given string.
+     */
     public Task deserializeTask(String line) {
         String[] parts = line.split(" \\| ");
 

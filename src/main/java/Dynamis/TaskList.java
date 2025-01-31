@@ -15,6 +15,11 @@ public class TaskList {
         this.items = items;
     }
 
+    /*
+     * Adds a new task to the TaskList object.
+     *
+     * @param newTask The task to add.
+     */
     public void addItem(Task newTask){
         items.add(newTask);
         System.out.println(horLine + "Got it. I've added this task:");
@@ -22,6 +27,9 @@ public class TaskList {
         System.out.println("Now you have " + items.size() + " tasks in the list.\n" + horLine);
     }
 
+    /*
+     * Prints the list of tasks in the TaskList Object.
+     */
     public void listItems() {
         System.out.println(horLine);
         for (int i = 0; i < items.size(); i++) {
@@ -30,6 +38,11 @@ public class TaskList {
         System.out.println(horLine);
     }
 
+    /*
+     * Marks a task as done.
+     *
+     * @param taskNumber The list number of the Task.
+     */
     public void markItem(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= items.size()) {
             items.get(taskNumber - 1).editDoneCheck(true);
@@ -39,6 +52,9 @@ public class TaskList {
         }
     }
 
+    /*
+     * Deletes a task from the tasklist.
+     */
     public void deleteItem(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= items.size()) {
             System.out.println(horLine + "Noted. I've removed this task:");

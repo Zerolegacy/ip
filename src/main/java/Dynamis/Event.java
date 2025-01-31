@@ -10,6 +10,13 @@ public class Event extends Task {
     protected LocalDate start;
     protected LocalDate end;
 
+    /*
+     * Constructs a Event Object. A type of task for the tasklist.
+     *
+     * @param name The name or description of the task
+     * @param start The starting time of the event.
+     * @param end The ending time of the event.
+     */
     public Event(String name, String start, String end) {
         super(name);
         try {

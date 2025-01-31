@@ -9,6 +9,11 @@ public abstract class Task {
         this.name = name;
     }
 
+    /*
+     * Edits the doneCheck property.
+     *
+     * @param doneCheck the boolean value to change to.
+     */
     public void editDoneCheck(Boolean doneCheck) {
         this.doneCheck = doneCheck;
     }

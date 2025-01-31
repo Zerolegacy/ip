@@ -7,6 +7,12 @@ public class Dynamis {
     private Storage storage;
     private TaskList tasks;
 
+    /*
+     * Constructs a new dynamis object and loads previous tasks.
+     * Creates new file if does not exist
+     *
+     * @param filePath The path to the file to load previous tasks from.
+     */
     public Dynamis(String filePath) {
         this.ui = new Ui();
         storage = new Storage(filePath);
@@ -18,6 +24,9 @@ public class Dynamis {
         }
     }
 
+    /*
+     * Handles the main running flow of the program.
+     */
     public void run() throws IOException {
         ui.printWelcomeMessage();
         ui.printTaskList(tasks);
