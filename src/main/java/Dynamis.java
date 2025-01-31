@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 
 //used regex.com to check regex used.
 public class Dynamis {
@@ -6,6 +8,20 @@ public class Dynamis {
         String horLine = "----------------------------------------\n";
         System.out.println(horLine + "Hello! I'm Dynamis\nWhat can I do for you?\n" + horLine);
         TaskList taskList = new TaskList();
+
+        try {
+            File f = new File("./data/dynamis.txt");
+            if (f.exists()) {
+                taskList.loadTasks();
+                taskList.listItems();
+            } else {
+                f.getParentFile().mkdirs();
+                f.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.equals("bye")) {
