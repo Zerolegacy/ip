@@ -1,64 +1,71 @@
-import java.util.Scanner;
-import java.io.File;
 import java.io.IOException;
 
-//used regex.com to check regex used.
 public class Dynamis {
-    public static void main(String[] args) {
-        String horLine = "----------------------------------------\n";
-        System.out.println(horLine + "Hello! I'm Dynamis\nWhat can I do for you?\n" + horLine);
-        TaskList taskList = new TaskList();
+    private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
 
+    public Dynamis(String filePath) {
+        this.ui = new Ui();
+        storage = new Storage(filePath);
+        storage.initializeFile();
         try {
-            File f = new File("./data/dynamis.txt");
-            if (f.exists()) {
-                taskList.loadTasks();
-                taskList.listItems();
-            } else {
-                f.getParentFile().mkdirs();
-                f.createNewFile();
-            }
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            tasks = new TaskList(storage.loadTasks());
+        } catch (Exception e) {
+            tasks = new TaskList();
         }
+    }
 
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        while (!input.equals("bye")) {
-            if (input.equals("list")) {
-                taskList.listItems();
-            } else if (input.matches("mark \\d+")) {
-                int taskNumber = Integer.parseInt(input.split(" ")[1]);
-                taskList.markItem(taskNumber);
-            } else if (input.startsWith("todo ")) {
-                if (!input.substring(5).equals("")) {
-                    taskList.addItem(new Todo(input.substring(5)));
-                } else {
-                    System.out.println("No name detected! Please enter the name of your task!");
-                }
-            } else if (input.startsWith("deadline ")) {
-                String[] parts = input.substring(9).split(" /by ");
-                if (parts.length == 2) {
-                    taskList.addItem(new Deadline(parts[0], parts[1]));
-                } else {
-                    System.out.println("Incorrect usage. Please Try again.");
-                }
-            } else if (input.startsWith("event ")) {
-                String[] parts = input.substring(6).split(" /from | /to ");
-                if (parts.length == 3) {
-                    taskList.addItem(new Event(parts[0], parts[1], parts[2]));
-                } else {
-                    System.out.println("Incorrect usage. Please Try again.");
-                }
-            } else if (input.matches("delete \\d+")) {
-                int taskNumber = Integer.parseInt(input.split(" ")[1]);
-                taskList.deleteItem(taskNumber);
-            } else {
-                System.out.println("Invalid command, please try again.");
-            }
-            input = scanner.nextLine();
+    public void run() throws IOException {
+        ui.printWelcomeMessage();
+        ui.printTaskList(tasks);
+        boolean isRunning = true;
+        while (isRunning) {
+            String input = ui.readInput();
+            isRunning = processInput(input);
+            storage.saveToFile(tasks.getTasks());
         }
-        scanner.close();
-        System.out.println(horLine + "Bye. Hope to see you again soon!\n" + horLine);
+        ui.printGoodbyeMessage();
+    }
+
+    public static void main(String[] args) throws IOException {
+        new Dynamis("./data/dynamis.txt").run();
+    }
+
+    private boolean processInput(String input) {
+        if (input.equals("bye")) {
+            return false;
+        } else if (input.equals("list")) {
+            ui.printTaskList(tasks);
+        } else if (input.matches("mark \\d+")) { //used regex.com to check regex used.
+            int taskNumber = Integer.parseInt(input.split(" ")[1]);
+            tasks.markItem(taskNumber);
+        } else if (input.startsWith("todo ")) {
+            if (!input.substring(5).equals("")) {
+                tasks.addItem(new Todo(input.substring(5)));
+            } else {
+                ui.printToDoError();
+            }
+        } else if (input.startsWith("deadline ")) {
+            String[] parts = input.substring(9).split(" /by ");
+            if (parts.length == 2) {
+                tasks.addItem(new Deadline(parts[0], parts[1]));
+            } else {
+                ui.printIncorrectUsageError();
+            }
+        } else if (input.startsWith("event ")) {
+            String[] parts = input.substring(6).split(" /from | /to ");
+            if (parts.length == 3) {
+                tasks.addItem(new Event(parts[0], parts[1], parts[2]));
+            } else {
+                ui.printIncorrectUsageError();
+            }
+        } else if (input.matches("delete \\d+")) {
+            int taskNumber = Integer.parseInt(input.split(" ")[1]);
+            tasks.deleteItem(taskNumber);
+        } else {
+            System.out.println("Invalid command, please try again.");
+        }
+        return true;
     }
 }
