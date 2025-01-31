@@ -74,6 +74,9 @@ public class Dynamis {
         } else if (input.matches("delete \\d+")) {
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
             tasks.deleteItem(taskNumber);
+        } else if (input.startsWith("find ")) {
+            String keyword = input.substring(5);
+            tasks.findTasks(keyword);
         } else {
             System.out.println("Invalid command, please try again.");
         }
