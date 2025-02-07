@@ -13,7 +13,8 @@ public class Dynamis {
      *
      * @param filePath The path to the file to load previous tasks from.
      */
-    public Dynamis(String filePath) {
+    public Dynamis() {
+        String filePath = "./data/dynamis.txt";
         this.ui = new Ui();
         storage = new Storage(filePath);
         storage.initializeFile();
@@ -33,53 +34,60 @@ public class Dynamis {
         boolean isRunning = true;
         while (isRunning) {
             String input = ui.readInput();
-            isRunning = processInput(input);
+            isRunning = true;
             storage.saveToFile(tasks.getTasks());
         }
         ui.printGoodbyeMessage();
     }
 
     public static void main(String[] args) throws IOException {
-        new Dynamis("./data/dynamis.txt").run();
+        new Dynamis().run();
     }
 
-    private boolean processInput(String input) {
+    private String processInput(String input) {
         if (input.equals("bye")) {
-            return false;
+            return "Bye";
         } else if (input.equals("list")) {
-            ui.printTaskList(tasks);
+            return ui.printTaskList(tasks);
         } else if (input.matches("mark \\d+")) { //used regex.com to check regex used.
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
-            tasks.markItem(taskNumber);
+            return tasks.markItem(taskNumber);
         } else if (input.startsWith("todo ")) {
             if (!input.substring(5).equals("")) {
-                tasks.addItem(new Todo(input.substring(5)));
+                return tasks.addItem(new Todo(input.substring(5)));
             } else {
-                ui.printToDoError();
+                return ui.printToDoError();
             }
         } else if (input.startsWith("deadline ")) {
             String[] parts = input.substring(9).split(" /by ");
             if (parts.length == 2) {
-                tasks.addItem(new Deadline(parts[0], parts[1]));
+                return tasks.addItem(new Deadline(parts[0], parts[1]));
             } else {
-                ui.printIncorrectUsageError();
+                return ui.printIncorrectUsageError();
             }
         } else if (input.startsWith("event ")) {
             String[] parts = input.substring(6).split(" /from | /to ");
             if (parts.length == 3) {
-                tasks.addItem(new Event(parts[0], parts[1], parts[2]));
+                return tasks.addItem(new Event(parts[0], parts[1], parts[2]));
             } else {
-                ui.printIncorrectUsageError();
+                return ui.printIncorrectUsageError();
             }
         } else if (input.matches("delete \\d+")) {
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
-            tasks.deleteItem(taskNumber);
+            return tasks.deleteItem(taskNumber);
         } else if (input.startsWith("find ")) {
             String keyword = input.substring(5);
-            tasks.findTasks(keyword);
+            return tasks.findTasks(keyword);
         } else {
-            System.out.println("Invalid command, please try again.");
+            return "Invalid command, please try again.";
         }
-        return true;
+    }
+    public String getResponse(String input) {
+        try {
+            storage.saveToFile(tasks.getTasks());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return processInput(input);
     }
 }

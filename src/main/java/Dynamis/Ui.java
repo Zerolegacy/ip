@@ -10,27 +10,27 @@ public class Ui {
     }
 
     String horLine = "----------------------------------------\n";
-    public void printWelcomeMessage() {
-        System.out.println(horLine + "Hello! I'm Dynamis.Dynamis\nWhat can I do for you?\n" + horLine);
+    public String printWelcomeMessage() {
+        return horLine + "Hello! I'm Dynamis.\nWhat can I do for you?\n" + horLine;
     }
 
-    public void printGoodbyeMessage() {
-        System.out.println(horLine + "Bye. Hope to see you again soon!\n" + horLine);
+    public String printGoodbyeMessage() {
+        return horLine + "Bye. Hope to see you again soon!\n" + horLine;
     }
 
     public String readInput() {
         return scanner.nextLine();
     }
 
-    public void printTaskList(TaskList taskList) {
-        taskList.listItems();
+    public String printTaskList(TaskList taskList) {
+        return taskList.listItems();
     }
 
-    public void printToDoError() {
-        System.out.println("No name detected! Please enter the name of your task!");
+    public String printToDoError() {
+        return "No name detected! Please enter the name of your task!";
     }
 
-    public void printIncorrectUsageError() {
-        System.out.println("Incorrect usage! Please try again!");
+    public String printIncorrectUsageError() {
+        return "Incorrect usage! Please try again!";
     }
 }
