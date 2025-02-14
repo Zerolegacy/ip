@@ -50,6 +50,8 @@ public class Dynamis {
     private String processInput(String input) {
         if (input.equals("bye")) {
             return "Bye";
+        } else if (input.equals("help")) {
+            return ui.printHelpMessage();
         } else if (input.equals("list")) {
             return ui.printTaskList(tasks);
         } else if (input.matches("mark \\d+")) { //used regex.com to check regex used.
