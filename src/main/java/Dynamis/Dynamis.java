@@ -60,6 +60,7 @@ public class Dynamis {
             }
         } else if (input.startsWith("deadline ")) {
             String[] parts = input.substring(9).split(" /by ");
+            assert(parts.length >= 0);
             if (parts.length == 2) {
                 return tasks.addItem(new Deadline(parts[0], parts[1]));
             } else {
@@ -67,6 +68,7 @@ public class Dynamis {
             }
         } else if (input.startsWith("event ")) {
             String[] parts = input.substring(6).split(" /from | /to ");
+            assert(parts.length >= 0);
             if (parts.length == 3) {
                 return tasks.addItem(new Event(parts[0], parts[1], parts[2]));
             } else {
@@ -76,6 +78,7 @@ public class Dynamis {
             int taskNumber = Integer.parseInt(input.split(" ")[1]);
             return tasks.deleteItem(taskNumber);
         } else if (input.startsWith("find ")) {
+            assert(input.length() > 5);
             String keyword = input.substring(5);
             return tasks.findTasks(keyword);
         } else {
