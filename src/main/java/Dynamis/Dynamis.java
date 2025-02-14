@@ -7,16 +7,19 @@ public class Dynamis {
     private Storage storage;
     private TaskList tasks;
 
-    /*
+    private static final String STORAGE_FILE_PATH = "./data/dynamis.txt";
+    private static final int DEADLINE_PARTS = 2;
+    private static final int EVENT_PARTS = 3;
+
+    /*ß
      * Constructs a new dynamis object and loads previous tasks.
      * Creates new file if does not exist
      *
      * @param filePath The path to the file to load previous tasks from.
      */
     public Dynamis() {
-        String filePath = "./data/dynamis.txt";
         this.ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(STORAGE_FILE_PATH);
         storage.initializeFile();
         try {
             tasks = new TaskList(storage.loadTasks());
@@ -60,14 +63,14 @@ public class Dynamis {
             }
         } else if (input.startsWith("deadline ")) {
             String[] parts = input.substring(9).split(" /by ");
-            if (parts.length == 2) {
+            if (parts.length == DEADLINE_PARTS) {
                 return tasks.addItem(new Deadline(parts[0], parts[1]));
             } else {
                 return ui.printIncorrectUsageError();
             }
         } else if (input.startsWith("event ")) {
             String[] parts = input.substring(6).split(" /from | /to ");
-            if (parts.length == 3) {
+            if (parts.length == EVENT_PARTS) {
                 return tasks.addItem(new Event(parts[0], parts[1], parts[2]));
             } else {
                 return ui.printIncorrectUsageError();
@@ -82,6 +85,7 @@ public class Dynamis {
             return "Invalid command, please try again.";
         }
     }
+
     public String getResponse(String input) {
         try {
             storage.saveToFile(tasks.getTasks());

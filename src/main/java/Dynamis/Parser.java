@@ -1,6 +1,7 @@
 package Dynamis;
 
 public class Parser {
+
     /*
      * Converts a Task Object to a presentable String. Used to output List of Tasks.
      *
@@ -9,12 +10,12 @@ public class Parser {
      */
     public String serialiseTask(Task task) {
         if (task instanceof Todo) {
-            return "T | " + (task.isDone() ? "1" : "0") + " | " + task.name;
+            return "T | " + (task.checkIfDone() ? "1" : "0") + " | " + task.name;
         } else if (task instanceof Deadline) {
-            return "D | " + (task.isDone() ? "1" : "0") + " | " + task.name
+            return "D | " + (task.checkIfDone() ? "1" : "0") + " | " + task.name
                     + " | " + ((Deadline) task).dueBy;
         } else if (task instanceof Event) {
-            return "E | " + (task.isDone() ? "1" : "0") + " | " + task.name
+            return "E | " + (task.checkIfDone() ? "1" : "0") + " | " + task.name
                     + " | " + ((Event) task).start + " | " + ((Event) task).end;
         } else {
             return "";
@@ -43,7 +44,7 @@ public class Parser {
             break;
         }
         if (task != null && parts[1].equals("1")) {
-            task.editDoneCheck(true);
+            task.editIsDone(true);
         }
         return task;
     }

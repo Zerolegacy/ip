@@ -34,7 +34,6 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
                 DialogBox.getDynamisDialog(ui.printWelcomeMessage(), dukeImage)
-                //DialogBox.getDynamisDialog(dynamis.getResponse("list"), dukeImage)
         );
     }
 

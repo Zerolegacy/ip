@@ -1,33 +1,32 @@
 package Dynamis;
 
 public abstract class Task {
-    protected Boolean doneCheck;
+    protected Boolean isDone;
     protected String name;
 
     Task(String name) {
-        this.doneCheck = false;
+        this.isDone = false;
         this.name = name;
     }
 
     /*
-     * Edits the doneCheck property.
+     * Edits the isDone property.
      *
-     * @param doneCheck the boolean value to change to.
+     * @param isDone the boolean value to change to.
      */
-    public void editDoneCheck(Boolean doneCheck) {
-        this.doneCheck = doneCheck;
+    public void editIsDone(Boolean isDone) {
+        this.isDone = isDone;
     }
 
-    public boolean isDone() {
-        return this.doneCheck;
+    public boolean checkIfDone() {
+        return this.isDone;
     }
 
     @Override
     public String toString() {
-        if (doneCheck) {
+        if (isDone) {
             return "[X] " + name;
-        }
-        else {
+        } else {
             return "[ ] " + name;
         }
     }

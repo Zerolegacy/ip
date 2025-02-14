@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class Storage {
     private final String filePath;
 
+    private static final String ERROR_MESSAGE = "Something went wrong. ";
+
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -25,7 +27,7 @@ public class Storage {
                 f.createNewFile();
             }
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            System.out.println(ERROR_MESSAGE + e.getMessage());
         }
     }
 
@@ -49,7 +51,7 @@ public class Storage {
         try {
             writeToFile(this.filePath, tempStorage);
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            System.out.println(ERROR_MESSAGE + e.getMessage());
         }
     }
 
