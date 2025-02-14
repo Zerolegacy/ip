@@ -4,18 +4,20 @@ import java.util.Scanner;
 
 public class Ui {
     private final Scanner scanner;
+    private final static String HORIZONTAL_LINE = "----------------------------------------\n";
 
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
-    String horLine = "----------------------------------------\n";
     public String printWelcomeMessage() {
-        return horLine + "Hello! I'm Dynamis.\nWhat can I do for you?\n" + horLine;
+        return HORIZONTAL_LINE + "Hello! I'm Dynamis.\nWhat can I do for you?\n"
+                + HORIZONTAL_LINE;
     }
 
     public String printGoodbyeMessage() {
-        return horLine + "Bye. Hope to see you again soon!\n" + horLine;
+        return HORIZONTAL_LINE + "Bye. Hope to see you again soon!\n"
+                + HORIZONTAL_LINE;
     }
 
     public String readInput() {

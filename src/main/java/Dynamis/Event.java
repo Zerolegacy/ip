@@ -10,6 +10,8 @@ public class Event extends Task {
     protected LocalDate start;
     protected LocalDate end;
 
+    private static final String DATETIME_FORMAT = "MMM d yyyy";
+
     /*
      * Constructs a Event Object. A type of task for the tasklist.
      *
@@ -36,7 +38,11 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: "
-                + (start != null ? start.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : startString) + " to: "
-                + (end != null ? end.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : endString) + ")";
+                + (start != null
+                    ? start.format(DateTimeFormatter.ofPattern(DATETIME_FORMAT))
+                    : startString) + " to: "
+                + (end != null
+                    ? end.format(DateTimeFormatter.ofPattern(DATETIME_FORMAT))
+                    : endString) + ")";
     }
 }

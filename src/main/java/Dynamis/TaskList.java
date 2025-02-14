@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TaskList {
     private ArrayList<Task> items;
-    String horLine = "----------------------------------------\n";
+    private static final String HORIZONTAL_LINE = "----------------------------------------\n";
 
     TaskList() {
         this.items = new ArrayList<>();
@@ -21,8 +21,9 @@ public class TaskList {
      */
     public String addItem(Task newTask){
         items.add(newTask);
-        return horLine + "Got it. I've added this task:\n"
-                + " " + newTask + "\nNow you have " + items.size() + " tasks in the list.\n" + horLine;
+        return HORIZONTAL_LINE + "Got it. I've added this task:\n"
+                + " " + newTask + "\nNow you have " + items.size()
+                + " tasks in the list.\n" + HORIZONTAL_LINE;
     }
 
     /*
@@ -43,9 +44,9 @@ public class TaskList {
      */
     public String markItem(int taskNumber) {
         if (taskNumber > 0 && taskNumber <= items.size()) {
-            items.get(taskNumber - 1).editDoneCheck(true);
-            return horLine + "Nice! I've marked this task as done:\n"
-                    + items.get(taskNumber - 1).name + "\n"+ horLine;
+            items.get(taskNumber - 1).editIsDone(true);
+            return HORIZONTAL_LINE + "Nice! I've marked this task as done:\n"
+                    + items.get(taskNumber - 1).name + "\n"+ HORIZONTAL_LINE;
         } else {
             return "Invalid task number.";
         }
@@ -58,9 +59,9 @@ public class TaskList {
         if (taskNumber > 0 && taskNumber <= items.size()) {
             Task taskToDelete = items.get(taskNumber - 1);
             items.remove(taskNumber - 1);
-            return horLine + "Noted. I've removed this task:\n "
-                    + taskToDelete + "\n"+ horLine
-                    + "\nNow you have " + items.size() + " tasks in the list.\n" + horLine;
+            return HORIZONTAL_LINE + "Noted. I've removed this task:\n "
+                    + taskToDelete + "\n"+ HORIZONTAL_LINE
+                    + "\nNow you have " + items.size() + " tasks in the list.\n" + HORIZONTAL_LINE;
         } else {
             return "Invalid task number.";
         }
@@ -78,13 +79,13 @@ public class TaskList {
     public String findTasks(String keyword) {
         StringBuilder result = new StringBuilder();
 
-        result.append(horLine).append("Here are the matching tasks in your list:\n");
+        result.append(HORIZONTAL_LINE).append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).name.toLowerCase().contains(keyword.toLowerCase())) {
                 result.append(i + 1).append(". ").append(items.get(i)).append("\n");
             }
         }
-        result.append("End of search\n").append(horLine);
+        result.append("End of search\n").append(HORIZONTAL_LINE);
         return result.toString();
     }
 }
