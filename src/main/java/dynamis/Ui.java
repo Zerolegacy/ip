@@ -1,4 +1,4 @@
-package Dynamis;
+package dynamis;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package Dynamis;
+package dynamis;
 
 public abstract class Task {
     protected Boolean isDone;

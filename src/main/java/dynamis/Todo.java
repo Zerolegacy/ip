@@ -1,4 +1,4 @@
-package Dynamis;
+package dynamis;
 
 public class Todo extends Task {
     public Todo(String name) {

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import Dynamis.Dynamis;
+import dynamis.Dynamis;
 
 /**
  * A GUI for dynamis using FXML.
@@ -22,6 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Dynamis");
             fxmlLoader.<MainWindow>getController().setDynamis(new Dynamis());  // inject the dynamis instance
             stage.show();
         } catch (IOException e) {
