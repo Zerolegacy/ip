@@ -83,17 +83,17 @@ mark 2
 
 ---
 
-### 6️⃣ Remove a Task
+### 6️⃣ Delete a Task
 Deletes a task from the list.
 
 ```
-remove <task_number>
+delete <task_number>
 ```
 **Example:**
 ```
 remove 1
 ```
-🗑 **Removes Task #1**
+🗑 **Deletes Task #1**
 
 ---
 
@@ -126,7 +126,7 @@ help
 Here are the available commands:
   todo <task>
   deadline <task> /by <yyyy-MM-dd>
-  event <task> /from <start> /to <end>
+  event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>
   list
   mark <task_number>
   remove <task_number>

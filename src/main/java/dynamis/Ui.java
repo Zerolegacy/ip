@@ -41,10 +41,10 @@ public class Ui {
                 "Dynamis - Here are the available commands:\n" +
                 "  todo <task>               - Adds a to-do task\n" +
                 "  deadline <task> /by <yyyy-MM-dd> - Adds a deadline\n" +
-                "  event <task> /from <start> /to <end> - Adds an event\n" +
+                "  event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd> - Adds an event\n" +
                 "  list                      - Lists all tasks\n" +
                 "  mark <task_number>        - Marks a task as done\n" +
-                "  remove <task_number>      - Removes a task\n" +
+                "  delete <task_number>      - deletes a task\n" +
                 "  find <keyword>            - Searches for tasks containing the keyword\n" +
                 "  help                      - Shows this help message\n" +
                 "  bye                       - Exits the program\n" +
