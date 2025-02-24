@@ -1,4 +1,4 @@
-package Dynamis;
+package dynamis;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +14,6 @@ public class ParserTest {
     @Test
     public void deserialiseTest(){
         Parser p = new Parser();
-        assertEquals(new Todo("test"), p.deserializeTask("T | 0 | test"));
+        assertEquals(new Todo("test").toString(), p.deserializeTask("T | 0 | test").toString());
     }
 }

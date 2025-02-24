@@ -1,5 +1,8 @@
 package dynamis;
 
+/**
+ * Represents a task with just a name.
+ */
 public class Todo extends Task {
     public Todo(String name) {
         super(name);

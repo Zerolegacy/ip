@@ -2,19 +2,30 @@ package dynamis;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a modifiable list of tasks.
+ */
 public class TaskList {
     private ArrayList<Task> items;
+
     private static final String HORIZONTAL_LINE = "----------------------------------------\n";
 
+    /**
+     * Constructs a TaskList object with an empty list of items or tasks.
+     */
     TaskList() {
         this.items = new ArrayList<>();
     }
 
+    /**
+     * Constructs a TaskList object with an existing list of items or tasks.
+     * @param items The list of items or tasks.
+     */
     TaskList(ArrayList<Task> items) {
         this.items = items;
     }
 
-    /*
+    /**
      * Adds a new task to the TaskList object.
      *
      * @param newTask The task to add.
@@ -26,7 +37,7 @@ public class TaskList {
                 + " tasks in the list.\n" + HORIZONTAL_LINE;
     }
 
-    /*
+    /**
      * Prints the list of tasks in the TaskList Object.
      */
     public String listItems() {
@@ -34,10 +45,14 @@ public class TaskList {
         for (int i = 0; i < items.size(); i++) {
             result.append(i + 1).append(". ").append(items.get(i)).append("\n");
         }
-        return result.toString();
+        if (!result.isEmpty()) {
+            return result.toString();
+        } else {
+            return "No available tasks found. Try adding a new task :)";
+        }
     }
 
-    /*
+    /**
      * Marks a task as done.
      *
      * @param taskNumber The list number of the Task.
@@ -52,7 +67,7 @@ public class TaskList {
         }
     }
 
-    /*
+    /**
      * Deletes a task from the tasklist.
      */
     public String deleteItem(int taskNumber) {
@@ -71,7 +86,7 @@ public class TaskList {
         return items;
     }
 
-    /*
+    /**
      * Searches the TaskList for tasks that contains a substring of a given keyword.
      *
      * @param keyword The substring to search for.

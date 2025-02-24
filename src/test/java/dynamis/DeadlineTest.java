@@ -1,4 +1,4 @@
-package Dynamis;
+package dynamis;
 
 import org.junit.jupiter.api.Test;
 

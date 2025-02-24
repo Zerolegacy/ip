@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task in with a start and end duration in datetime format.
+ */
 public class Event extends Task {
     protected String startString;
     protected String endString;
@@ -12,10 +15,10 @@ public class Event extends Task {
 
     private static final String DATETIME_FORMAT = "MMM d yyyy";
 
-    /*
+    /**
      * Constructs a Event Object. A type of task for the tasklist.
      *
-     * @param name The name or description of the task
+     * @param name The name or description of the task.
      * @param start The starting time of the event.
      * @param end The ending time of the event.
      */
@@ -24,14 +27,14 @@ public class Event extends Task {
         try {
             this.start = LocalDate.parse(start);
         } catch (DateTimeParseException e) {
-            this.start = null;
             this.startString = start;
+            this.start = null;
         }
         try {
             this.end = LocalDate.parse(end);
         } catch (DateTimeParseException e) {
-            this.end = null;
             this.endString = end;
+            this.end = null;
         }
     }
 
